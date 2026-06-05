@@ -423,20 +423,36 @@ function loadMap(mapId) {
   graph.clear();
   clearAnimationTimeouts();
 
-  let mapData = DEFAULT_MAP;
+  let mapData    = DEFAULT_MAP;
   let defaultStart = "Central Station";
   let defaultEnd   = "Airport";
 
-  if (mapId === "maharashtra") {
+  if (mapId.startsWith("state:")) {
+    // ── Load from INDIA_STATE_MAPS ──────────────────────────────────────────
+    const stateKey = mapId.replace("state:", "");
+    const stateData = INDIA_STATE_MAPS[stateKey];
+    if (stateData) {
+      mapData = stateData;
+      const nodeKeys = Object.keys(stateData.nodes);
+      defaultStart = nodeKeys[0];
+      defaultEnd   = nodeKeys[nodeKeys.length - 1];
+    } else {
+      logToConsole(`⚠️ State data not found for: ${stateKey}`, "result");
+    }
+    document.getElementById("gmaps-key-group").style.display = "flex";
+
+  } else if (mapId === "maharashtra") {
     mapData      = MAHARASHTRA_MAP;
     defaultStart = "Mumbai";
     defaultEnd   = "Nagpur";
     document.getElementById("gmaps-key-group").style.display = "flex";
+
   } else if (mapId === "india") {
     mapData      = INDIA_MAP;
     defaultStart = "New Delhi";
     defaultEnd   = "Kolkata";
     document.getElementById("gmaps-key-group").style.display = "flex";
+
   } else {
     document.getElementById("gmaps-key-group").style.display = "none";
   }
@@ -448,8 +464,10 @@ function loadMap(mapId) {
     graph.addEdge(edge.from, edge.to, edge.distance, edge.speedLimit, edge.trafficFactor);
   }
 
-  document.getElementById("city-title").innerText = mapData.cityName;
-  logToConsole(`Loaded map: ${mapData.cityName} (${Object.keys(mapData.nodes).length} cities, ${mapData.edges.length} roads).`, "success");
+  const nodeCount = Object.keys(mapData.nodes).length;
+  const edgeCount = mapData.edges.length;
+  document.getElementById("city-title").innerText = mapData.stateName || mapData.cityName;
+  logToConsole(`✅ Loaded: ${mapData.stateName || mapData.cityName} — ${nodeCount} cities, ${edgeCount} roads.`, "success");
   updateDropdowns(defaultStart, defaultEnd);
   renderGraph();
   updateComparisonTable();
