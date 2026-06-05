@@ -1,0 +1,31 @@
+{
+  "city_name": "MetroCity",
+  "nodes": {
+    "Central Station": {"x": 5.0, "y": 8.0, "description": "Primary train station and city transit hub."},
+    "Downtown Mall": {"x": 4.0, "y": 5.0, "description": "Shopping and commercial center."},
+    "Financial District": {"x": 7.0, "y": 6.0, "description": "High-density banking and office zone."},
+    "Tech Park": {"x": 8.0, "y": 3.0, "description": "IT companies and software development offices."},
+    "Residential Block A": {"x": 2.0, "y": 6.0, "description": "Densely populated housing area in West MetroCity."},
+    "Residential Block B": {"x": 8.0, "y": 9.0, "description": "Suburban residential colony in East MetroCity."},
+    "City Hospital": {"x": 5.0, "y": 3.0, "description": "Emergency and healthcare center."},
+    "Green Park": {"x": 3.0, "y": 2.0, "description": "Recreational park and open space."},
+    "University Campus": {"x": 1.0, "y": 3.0, "description": "Educational institutions and housing."},
+    "Airport": {"x": 9.0, "y": 1.0, "description": "International Airport on the city outskirts."}
+  },
+  "edges": [
+    {"from": "Central Station", "to": "Downtown Mall", "distance": 4.5, "speed_limit": 50, "traffic_factor": 1.2},
+    {"from": "Central Station", "to": "Financial District", "distance": 3.0, "speed_limit": 40, "traffic_factor": 1.8},
+    {"from": "Central Station", "to": "Residential Block B", "distance": 5.0, "speed_limit": 60, "traffic_factor": 1.0},
+    {"from": "Downtown Mall", "to": "Residential Block A", "distance": 2.5, "speed_limit": 40, "traffic_factor": 1.5},
+    {"from": "Downtown Mall", "to": "City Hospital", "distance": 3.5, "speed_limit": 50, "traffic_factor": 1.1},
+    {"from": "Financial District", "to": "Tech Park", "distance": 4.0, "speed_limit": 60, "traffic_factor": 1.4},
+    {"from": "Financial District", "to": "Residential Block B", "distance": 3.8, "speed_limit": 50, "traffic_factor": 2.0},
+    {"from": "Tech Park", "to": "City Hospital", "distance": 5.2, "speed_limit": 50, "traffic_factor": 1.3},
+    {"from": "Tech Park", "to": "Airport", "distance": 6.0, "speed_limit": 80, "traffic_factor": 1.0},
+    {"from": "Residential Block A", "to": "University Campus", "distance": 3.0, "speed_limit": 30, "traffic_factor": 1.0},
+    {"from": "Residential Block A", "to": "Green Park", "distance": 4.8, "speed_limit": 40, "traffic_factor": 1.2},
+    {"from": "City Hospital", "to": "Green Park", "distance": 2.2, "speed_limit": 40, "traffic_factor": 1.1},
+    {"from": "University Campus", "to": "Green Park", "distance": 2.0, "speed_limit": 30, "traffic_factor": 1.0},
+    {"from": "Green Park", "to": "Airport", "distance": 8.5, "speed_limit": 70, "traffic_factor": 1.5}
+  ]
+}

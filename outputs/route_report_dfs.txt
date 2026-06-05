@@ -1,0 +1,16 @@
+============================================================
+            🏆 AUTOMATED ROUTE SUMMARY REPORT
+============================================================
+🟢 SOURCE:        Central Station
+🔴 DESTINATION:   Airport
+⚙️  ALGORITHM:     DFS
+🎯 OPTIMIZED FOR:  Distance
+────────────────────────────────────────────────────────────
+🔀 PATH SEQUENCE:
+   [Central Station] ➡️  [Downtown Mall] ➡️  [Residential Block A] ➡️  [University Campus] ➡️  [Green Park] ➡️  [City Hospital] ➡️  [Tech Park] ➡️  [Airport]
+────────────────────────────────────────────────────────────
+📏 TOTAL DISTANCE:   25.40 km
+⏱️  ESTIMATED TIME:   38.35 minutes
+🚉 INTERSECTIONS:    6 stop(s)
+📈 AVERAGE SPEED:    39.74 km/h
+============================================================

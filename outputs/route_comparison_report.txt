@@ -1,0 +1,19 @@
+============================================================
+            📊 ROUTE PLANNER ALGORITHMIC COMPARISON
+============================================================
+Route: Central Station ➡️  Airport
+
+1. DFS (Unoptimized)
+   ├─ Path: Central Station ➡️  Downtown Mall ➡️  Residential Block A ➡️  University Campus ➡️  Green Park ➡️  City Hospital ➡️  Tech Park ➡️  Airport
+   ├─ Distance: 25.40 km
+   └─ Travel Time: 38.35 minutes
+
+2. Dijkstra (Distance-Optimized)
+   ├─ Path: Central Station ➡️  Financial District ➡️  Tech Park ➡️  Airport
+   ├─ Distance: 13.00 km
+   └─ Travel Time: 18.20 minutes
+
+⭐ PERFORMANCE GAIN SUMMARY:
+   🚀 Distance Saved: 12.40 km (48.8% shorter route)
+   ⏱️ Time Saved:     20.15 minutes (52.5% faster route)
+============================================================

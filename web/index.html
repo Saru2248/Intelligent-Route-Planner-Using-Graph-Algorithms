@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligent Route Planner Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Left Panel: Configurations and Controls -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">🧭</span>
+        <h1>Route Planner</h1>
+      </div>
+      
+      <div class="control-group">
+        <label for="map-selector">🗺️ Select Network Map</label>
+        <select id="map-selector" class="form-control">
+          <option value="metrocity" selected>🏙️ MetroCity (Local Custom Map)</option>
+          <option value="maharashtra">🏔️ Maharashtra Highway Network</option>
+          <option value="india">🇮🇳 India National Highway Grid</option>
+        </select>
+      </div>
+
+      <div class="control-group" id="gmaps-key-group" style="display: none;">
+        <label for="gmaps-api-key">🔑 Google Maps API Key (Optional)</label>
+        <input type="password" id="gmaps-api-key" placeholder="AIzaSy... (Enables Live Distance)" class="form-control sm">
+      </div>
+
+      <div class="control-group">
+        <label for="start-node">🟢 Start Location</label>
+        <select id="start-node" class="form-control">
+          <!-- Dynamically populated -->
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="end-node">🔴 Destination</label>
+        <select id="end-node" class="form-control">
+          <!-- Dynamically populated -->
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="algorithm">⚙️ Routing Algorithm</label>
+        <select id="algorithm" class="form-control">
+          <option value="dijkstra-distance" selected>Dijkstra: Shortest Distance</option>
+          <option value="dijkstra-time">Dijkstra: Fastest Time (Traffic-Aware)</option>
+          <option value="astar">A* Search: Heuristic Optimized</option>
+          <option value="bfs">BFS: Fewest Stops</option>
+          <option value="dfs">DFS: Connection Explorer</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="speed-slider">⏱️ Animation Speed</label>
+        <div class="slider-container">
+          <input type="range" id="speed-slider" min="100" max="1500" value="500" step="100">
+          <span id="speed-val">500ms</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="btn-find-route" class="btn btn-primary">⚡ Calculate Route</button>
+        <button id="btn-reset" class="btn btn-secondary">🔄 Reset Map</button>
+      </div>
+
+      <div class="node-editor-section">
+        <h3>🛠️ Map Editor</h3>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="node-tab">Add Location</button>
+          <button class="tab-btn" data-tab="edge-tab">Add Road</button>
+        </div>
+        
+        <!-- Tab Content: Add Node -->
+        <div id="node-tab" class="tab-content active">
+          <input type="text" id="new-node-name" placeholder="Location Name (e.g. West Gate)" class="form-control sm">
+          <div class="row">
+            <input type="number" id="new-node-x" placeholder="X Coord (1-10)" class="form-control sm" step="0.1" min="1" max="10">
+            <input type="number" id="new-node-y" placeholder="Y Coord (1-10)" class="form-control sm" step="0.1" min="1" max="10">
+          </div>
+          <input type="text" id="new-node-desc" placeholder="Short description" class="form-control sm">
+          <button id="btn-add-node" class="btn btn-accent btn-sm">➕ Create Node</button>
+        </div>
+
+        <!-- Tab Content: Add Edge -->
+        <div id="edge-tab" class="tab-content">
+          <div class="row">
+            <select id="edge-u" class="form-control sm"></select>
+            <select id="edge-v" class="form-control sm"></select>
+          </div>
+          <div class="row">
+            <input type="number" id="edge-dist" placeholder="Distance (km)" class="form-control sm" step="0.1" min="0.1">
+            <input type="number" id="edge-speed" placeholder="Speed (km/h)" class="form-control sm" min="10" value="50">
+          </div>
+          <select id="edge-traffic" class="form-control sm">
+            <option value="1.0" selected>Traffic: Clear (1.0x)</option>
+            <option value="1.5">Traffic: Moderate (1.5x)</option>
+            <option value="2.2">Traffic: Heavy (2.2x)</option>
+            <option value="3.5">Traffic: Gridlock (3.5x)</option>
+          </select>
+          <button id="btn-add-edge" class="btn btn-accent btn-sm">🛣️ Connect Road</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Panel: Visualizer Map, Statistics and logs -->
+    <main class="main-content">
+      
+      <!-- Top Section: Stats Cards -->
+      <section class="stats-panel">
+        <div class="stat-card">
+          <div class="stat-icon icon-dist">📏</div>
+          <div class="stat-details">
+            <span class="stat-label">Total Distance</span>
+            <span id="stat-distance" class="stat-value">0.00 km</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon icon-time">⏱️</div>
+          <div class="stat-details">
+            <span class="stat-label">Est. Travel Time</span>
+            <span id="stat-time" class="stat-value">0.00 mins</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-stops">🚉</div>
+          <div class="stat-details">
+            <span class="stat-label">Intersections</span>
+            <span id="stat-stops" class="stat-value">0 stops</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon icon-speed">📈</div>
+          <div class="stat-details">
+            <span class="stat-label">Average Speed</span>
+            <span id="stat-speed" class="stat-value">0.00 km/h</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Container -->
+      <section class="map-card">
+        <div class="map-card-header">
+          <h2>🗺️ City Roadmap Network (<span id="city-title">MetroCity</span>)</h2>
+          <div class="map-legend">
+            <span class="legend-item"><span class="dot dot-standard"></span> Node</span>
+            <span class="legend-item"><span class="dot dot-start"></span> Start</span>
+            <span class="legend-item"><span class="dot dot-end"></span> Target</span>
+            <span class="legend-item"><span class="dot dot-visited"></span> Visited</span>
+          </div>
+        </div>
+        <div class="map-viewport">
+          <svg id="map-svg" viewBox="0 0 800 500" width="100%" height="100%">
+            <!-- Grid lines background -->
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- Edges group -->
+            <g id="edges-group"></g>
+            <!-- Highlighted edges group -->
+            <g id="path-edges-group"></g>
+            <!-- Nodes group -->
+            <g id="nodes-group"></g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Bottom Panel: Execution Log & Comparisons -->
+      <div class="details-row">
+        <!-- Algorithmic comparison table -->
+        <section class="comparison-card">
+          <h2>📊 Algorithmic Performance Comparison</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Distance</th>
+                  <th>Travel Time</th>
+                  <th>Stops</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="comparison-table-body">
+                <!-- Dynamically updated -->
+              </tbody>
+            </table>
+          </div>
+          <div id="savings-insight" class="insight-box">
+            Select start/end and run a route to view optimizations.
+          </div>
+        </section>
+
+        <!-- Execution console -->
+        <section class="log-card">
+          <div class="log-card-header">
+            <h2>💻 Pathfinding Execution Console</h2>
+            <button id="btn-clear-console" class="btn-clear">🗑️ Clear</button>
+          </div>
+          <div id="console-logs" class="console-box">
+            <div class="log-line system">System ready. Click nodes on the map to set source/destination, or select from the dropdown.</div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

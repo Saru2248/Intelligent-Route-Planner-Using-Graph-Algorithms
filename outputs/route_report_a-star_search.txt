@@ -1,0 +1,16 @@
+============================================================
+            🏆 AUTOMATED ROUTE SUMMARY REPORT
+============================================================
+🟢 SOURCE:        Central Station
+🔴 DESTINATION:   Airport
+⚙️  ALGORITHM:     A-Star Search
+🎯 OPTIMIZED FOR:  Distance
+────────────────────────────────────────────────────────────
+🔀 PATH SEQUENCE:
+   [Central Station] ➡️  [Financial District] ➡️  [Tech Park] ➡️  [Airport]
+────────────────────────────────────────────────────────────
+📏 TOTAL DISTANCE:   13.00 km
+⏱️  ESTIMATED TIME:   18.20 minutes
+🚉 INTERSECTIONS:    2 stop(s)
+📈 AVERAGE SPEED:    42.86 km/h
+============================================================
