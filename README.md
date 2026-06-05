@@ -3,49 +3,82 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![DSA Project](https://img.shields.io/badge/DSA-Graphs-green.svg)]()
 [![Algorithms](https://img.shields.io/badge/Algorithms-Dijkstra%20%7C%20BFS%20%7C%20DFS-orange.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)]()
 
-An industry-oriented Data Structures & Algorithms project that simulates modern navigation systems such as Google Maps, Uber, Ola, Swiggy, and logistics platforms.
+An industry-oriented **Data Structures & Algorithms (DSA)** project that simulates modern navigation systems such as Google Maps, Uber, Ola, Swiggy, and logistics platforms using Graph Algorithms.
 
-The system models a city as a weighted graph and uses Graph Algorithms including BFS, DFS, Dijkstra's Algorithm, and A* Search to calculate optimized routes based on distance and travel time.
-
----
-
-## 📌 Project Overview
-
-Route optimization is one of the most widely used applications of Graph Theory in the software industry.
-
-This project demonstrates how real-world navigation systems represent locations as graph nodes and roads as weighted edges to determine the most efficient route between two locations.
-
-### Real-World Applications
-
-- Google Maps Navigation
-- Uber & Ola Route Matching
-- Swiggy & Zomato Delivery Optimization
-- Logistics & Supply Chain Management
-- Smart Transportation Systems
-- Emergency Response Routing
-- Fleet Management Systems
+The system models a city as a weighted graph and calculates optimized routes using **BFS, DFS, Dijkstra's Algorithm, and A* Search Algorithm**.
 
 ---
 
-## 🎯 Problem Statement
+# 📌 Project Overview
 
-Given a source and destination location:
+Route optimization is one of the most important real-world applications of Graph Theory.
 
-- Model a city using Graph Data Structures
-- Represent roads as weighted edges
-- Apply shortest-path algorithms
-- Determine the optimal route
-- Calculate travel distance and estimated travel time
-- Visualize the route network
+This project demonstrates how navigation systems represent locations as graph nodes and roads as weighted edges to determine the most efficient route between two locations.
+
+The application supports:
+
+* Shortest Distance Routing
+* Fastest Route Calculation
+* Traffic-Aware Optimization
+* Route Visualization
+* Graph Traversal Analysis
 
 ---
 
-## ✨ Key Features
+# 🎯 Problem Statement
 
-✅ Graph-based city modeling
+Given a source and destination:
 
-✅ Adjacency List implementation
+* Model the city as a weighted graph
+* Represent roads as edges
+* Apply graph algorithms
+* Find the optimal route
+* Calculate travel distance and estimated travel time
+* Visualize the route network
+
+---
+
+# 🌍 Real-World Applications
+
+### Navigation Systems
+
+* Google Maps
+* Apple Maps
+* Waze
+
+### Ride Sharing Platforms
+
+* Uber
+* Ola
+* Lyft
+
+### Food Delivery Platforms
+
+* Swiggy
+* Zomato
+* DoorDash
+
+### Logistics & Transportation
+
+* DHL
+* FedEx
+* UPS
+
+### Smart City Transportation
+
+* Fleet Management
+* Emergency Response Routing
+* Traffic Monitoring Systems
+
+---
+
+# ✨ Features
+
+✅ Graph-Based City Modeling
+
+✅ Adjacency List Representation
 
 ✅ Breadth First Search (BFS)
 
@@ -55,237 +88,321 @@ Given a source and destination location:
 
 ✅ A* Search Algorithm
 
-✅ Traffic-aware route optimization
+✅ Traffic-Aware Route Optimization
 
-✅ Route reconstruction
+✅ Distance & Time Calculation
 
-✅ Distance and travel time estimation
+✅ Route Reconstruction
 
 ✅ Interactive CLI Interface
 
-✅ Network Visualization using NetworkX & Matplotlib
+✅ Route Performance Comparison
 
-✅ Route Performance Analysis
+✅ Graph Visualization Using NetworkX
 
----
-
-## 🛠️ Tech Stack
-
-| Category | Technology |
-|-----------|------------|
-| Language | Python 3.8+ |
-| Data Structures | Graphs, Adjacency Lists |
-| Algorithms | BFS, DFS, Dijkstra, A* |
-| Visualization | NetworkX, Matplotlib |
-| Priority Queue | heapq |
-| Storage | JSON |
-| Version Control | Git & GitHub |
+✅ Professional Project Documentation
 
 ---
 
-## 🏗️ System Architecture
+# 🛠️ Tech Stack
 
+| Category        | Technology             |
+| --------------- | ---------------------- |
+| Language        | Python 3.8+            |
+| Data Structures | Graph, Adjacency List  |
+| Algorithms      | BFS, DFS, Dijkstra, A* |
+| Priority Queue  | heapq                  |
+| Visualization   | NetworkX, Matplotlib   |
+| Data Storage    | JSON                   |
+| Version Control | Git & GitHub           |
+
+---
+
+# 🏗️ System Architecture
+
+```text
 User Input
-      ↓
+     │
+     ▼
 Source & Destination
-      ↓
+     │
+     ▼
 Graph Creation
-      ↓
+     │
+     ▼
 Adjacency List
-      ↓
+     │
+     ▼
 Pathfinding Algorithms
 (BFS / DFS / Dijkstra / A*)
-      ↓
+     │
+     ▼
 Optimized Route
-      ↓
+     │
+     ▼
 Route Summary
-      ↓
+     │
+     ▼
 Graph Visualization
+```
 
 ---
 
-## 🧠 DSA Concepts Demonstrated
+# 🧠 DSA Concepts Used
 
-### Graphs
-Representation of locations and roads.
+## Graph
 
-### Adjacency List
-Efficient graph storage.
+Locations are represented as nodes and roads as weighted edges.
 
-### BFS
-Finds paths with minimum number of stops.
+## Adjacency List
 
-### DFS
-Graph exploration and traversal.
+Efficient graph representation with O(V + E) space complexity.
 
-### Dijkstra's Algorithm
-Finds shortest weighted path.
+## BFS
 
-### A* Search
-Uses heuristic optimization for faster route computation.
+Used to explore nodes level by level.
 
-### Min Heap
-Optimizes shortest-path calculations.
+### Time Complexity
+
+O(V + E)
+
+## DFS
+
+Used for graph traversal and exploration.
+
+### Time Complexity
+
+O(V + E)
+
+## Dijkstra's Algorithm
+
+Finds shortest path in weighted graphs.
+
+### Time Complexity
+
+O((V + E) log V)
+
+## A* Search
+
+Heuristic-based shortest path algorithm.
+
+### Time Complexity
+
+O(E)
+
+## Min Heap
+
+Used for efficient priority queue operations.
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
+```text
 Intelligent-Route-Planner-Graph-Algorithms/
 │
 ├── data/
+│   └── city_map.json
+│
 ├── src/
-│ ├── graph.py
-│ ├── algorithms.py
-│ └── visualization.py
+│   ├── graph.py
+│   ├── algorithms.py
+│   └── visualization.py
 │
 ├── outputs/
+│   └── route_reports/
+│
 ├── images/
+│   ├── dashboard_screenshot.png
+│   ├── dashboard_demo.webp
+│   └── route_graph.png
+│
 ├── web/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+│
 ├── docs/
+│   └── architecture.md
 │
 ├── requirements.txt
 ├── README.md
+├── .gitignore
 ├── run_simulation.py
 └── main.py
+```
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
-### Clone Repository
+## Clone Repository
 
-git clone https://github.com/yourusername/Intelligent-Route-Planner-Graph-Algorithms.git
+```bash
+git clone https://github.com/your-username/Intelligent-Route-Planner-Graph-Algorithms.git
 
 cd Intelligent-Route-Planner-Graph-Algorithms
+```
 
-### Install Dependencies
+## Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
 ---
 
-## ▶️ Run Project
+# ▶️ Running the Project
 
-### Interactive CLI
+## Interactive CLI
 
+```bash
 python main.py
+```
 
-### Automated Simulation
+## Automated Simulation
 
+```bash
 python run_simulation.py
+```
 
-### Web Dashboard
+## Interactive Dashboard
 
+```bash
 python -m http.server 8000
+```
 
-Open:
+Open Browser:
 
+```text
 http://localhost:8000/web/
+```
 
 ---
 
-## 📊 Sample Output
+# 📊 Sample Output
 
-Source: Central Station
+```text
+SOURCE: Central Station
 
-Destination: Airport
+DESTINATION: Airport
 
-Algorithm: Dijkstra Distance
+ALGORITHM: Dijkstra Distance
 
-Optimal Route:
+ROUTE:
 
 Central Station
-→ Financial District
-→ Tech Park
-→ Airport
+    ↓
+Financial District
+    ↓
+Tech Park
+    ↓
+Airport
 
-Distance: 13 km
+TOTAL DISTANCE: 13.00 km
 
-Estimated Time: 18.2 minutes
+ESTIMATED TIME: 18.20 min
+```
 
 ---
 
-## 📈 Performance Comparison
+# 📈 Algorithm Performance Comparison
 
-| Metric | DFS | Dijkstra |
-|----------|---------|-----------|
-| Distance | 25.4 km | 13 km |
+| Metric      | DFS       | Dijkstra  |
+| ----------- | --------- | --------- |
+| Distance    | 25.40 km  | 13.00 km  |
 | Travel Time | 38.35 min | 18.20 min |
-| Stops | 6 | 2 |
+| Stops       | 6         | 2         |
 
-Result:
+### Improvements
 
 ✔ 48.8% reduction in travel distance
 
 ✔ 52.5% reduction in travel time
 
+✔ More efficient route planning
+
 ---
 
-## 📷 Screenshots
+# 📸 Screenshots
 
-### Graph Visualization
-
-![Graph](images/route_graph.png)
-
-### Dashboard
+## Dashboard
 
 ![Dashboard](images/dashboard_screenshot.png)
 
-### Route Animation
+## Route Visualization
+
+![Route Graph](images/route_graph.png)
+
+## Route Animation
 
 ![Demo](images/dashboard_demo.webp)
 
 ---
 
-## 🚀 Future Enhancements
+# 🚀 Future Enhancements
 
-- Real-Time Traffic Integration
-- Google Maps API Integration
-- Live GPS Tracking
-- Multi-Destination Routing
-- Vehicle Routing Problem (VRP)
-- Route Recommendation Engine
-- Machine Learning Based Traffic Prediction
-
----
-
-## 🎓 Learning Outcomes
-
-- Graph Theory Applications
-- Shortest Path Algorithms
-- Route Optimization Techniques
-- Heuristic Search Algorithms
-- Data Visualization
-- Software Engineering Practices
-- Git & GitHub Workflow
+* Real-Time Traffic Integration
+* Google Maps API Integration
+* Live GPS Tracking
+* Multiple Destination Routing
+* Vehicle Routing Problem (VRP)
+* AI-Based Traffic Prediction
+* Dynamic Route Replanning
 
 ---
 
-## 👨‍💻 Author
+# 🎓 Learning Outcomes
 
-Sarthak Dhumal
+Through this project, I gained practical experience with:
+
+* Graph Data Structures
+* Adjacency Lists
+* BFS & DFS Traversal
+* Dijkstra's Algorithm
+* A* Search Algorithm
+* Min Heap Optimization
+* Route Optimization Techniques
+* Data Visualization
+* Software Engineering Practices
+* Git & GitHub Workflow
+
+---
+
+# 💼 Interview Questions Covered
+
+* Explain Graph Data Structures.
+* Why did you choose Adjacency Lists?
+* Explain Dijkstra's Algorithm.
+* Difference between BFS and DFS.
+* What is a Min Heap?
+* Why is Dijkstra suitable for route planning?
+* How would you improve this system?
+* Explain the time complexity of your algorithms.
+* What challenges did you face during development?
+* Explain your project end-to-end.
+
+---
+
+# 👨‍💻 Author
+
+**Sarthak Dhumal**
 
 Computer Engineering Student
 
-Passionate about:
-- Data Structures & Algorithms
-- Software Development
-- Backend Engineering
-- System Design
-- Problem Solving
+Interests:
+
+* Data Structures & Algorithms
+* Software Development
+* Backend Engineering
+* System Design
+* Problem Solving
 
 ---
 
-## ⭐ Support
+# ⭐ If You Like This Project
 
-If you found this project useful:
-
-⭐ Star the repository
-
-🍴 Fork the project
-
-📢 Share with others
+Give this repository a ⭐ Star and share it with others.
 
 ---
 
