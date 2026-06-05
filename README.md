@@ -330,13 +330,7 @@ ESTIMATED TIME: 18.20 min
 
 ![Dashboard](images/dashboard_screenshot.png)
 
-## Route Visualization
 
-![Route Graph](images/route_graph.png)
-
-## Route Animation
-
-![Demo](images/dashboard_demo.webp)
 
 ---
 
